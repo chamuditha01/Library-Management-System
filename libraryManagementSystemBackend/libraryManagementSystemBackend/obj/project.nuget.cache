@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "mWFtP2SljHtPfRDMi55CtVpMqTA2SiXLfEPD4DQ1IGICf4Ejtmw1nveyh3Oo3Aqrt3iwaGRLe1qo4m+vo5epAg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\ASUS\\Desktop\\Expertenic Assignment\\libraryManagementSystemBackend\\libraryManagementSystemBackend\\libraryManagementSystemBackend.fsproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ASUS\\.nuget\\packages\\fsharp.core\\8.0.101\\fsharp.core.8.0.101.nupkg.sha512"
+  ],
+  "logs": []
+}

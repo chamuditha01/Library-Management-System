@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34511.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "libraryManagementSystemBackend", "libraryManagementSystemBackend\libraryManagementSystemBackend.fsproj", "{941E9C70-7079-491D-85DE-E279837AF3CD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{941E9C70-7079-491D-85DE-E279837AF3CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{941E9C70-7079-491D-85DE-E279837AF3CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{941E9C70-7079-491D-85DE-E279837AF3CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{941E9C70-7079-491D-85DE-E279837AF3CD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B7FE4DF6-8596-415B-8AF0-3003D1A2D094}
+	EndGlobalSection
+EndGlobal
