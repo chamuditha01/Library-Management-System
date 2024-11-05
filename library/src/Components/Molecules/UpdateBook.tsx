@@ -1,24 +1,41 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 interface Book {
-  id: number;
+  bookId: number;
   title: string;
   author: string;
   description: string;
 }
 
 const UpdateBooks: React.FC = () => {
-  const [books, setBooks] = useState<Book[]>([
-    { id: 1, title: "groom", author: "Richard", description: "heading to north america" },
-  ]);
-
+  const [loading, setLoading] = useState<boolean>(true);
+  const [books, setBooks] = useState<Book[]>([]);
   const [editingRow, setEditingRow] = useState<number | null>(null);
   const [updatedBook, setUpdatedBook] = useState<Book | null>(null);
 
+  useEffect(() => {
+    const fetchBooks = async () => {
+      try {
+        const response = await fetch("https://localhost:5000/api/books"); // Adjust the URL according to your API
+        if (!response.ok) {
+          throw new Error("Failed to fetch books");
+        }
+        const data = await response.json();
+        setBooks(data);
+      } catch (error) {
+        console.error("Error fetching books:", error);
+      } finally {
+        setLoading(false); // Set loading to false once the fetch is done
+      }
+    };
+
+    fetchBooks(); // Call the fetch function
+  }, []);
+
   const handleEditClick = (book: Book) => {
-    setEditingRow(book.id);
-    setUpdatedBook({ ...book });
+    setEditingRow(book.bookId); // Set the editing row to the clicked book's id
+    setUpdatedBook({ ...book }); // Initialize updatedBook with the current book data
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,19 +48,44 @@ const UpdateBooks: React.FC = () => {
     }
   };
 
-  const handleSaveClick = () => {
+  const handleSaveClick = async () => {
     if (updatedBook) {
-      setBooks(books.map(book => (book.id === updatedBook.id ? updatedBook : book)));
-      setEditingRow(null);
-      setUpdatedBook(null);
+      try {
+        // Send PUT request to update the book in the API
+        const response = await fetch(`https://localhost:5000/api/books/${updatedBook.bookId}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedBook),
+        });
+  
+        if (!response.ok) {
+          throw new Error("Failed to update book");
+        }
+  
+        // Update the book in the local state correctly
+        setBooks(prevBooks =>
+          prevBooks.map(book => (book.bookId === updatedBook.bookId ? updatedBook : book))
+        );
+        setEditingRow(null); // Reset editing row
+        setUpdatedBook(null); // Clear updated book data
+      } catch (error) {
+        console.error("Error updating book:", error);
+      }
     }
   };
+  
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="center-table-content">
       <div className="table-responsive">
-      <table className="table table-bordered table-hover" style={{margin:'0 auto'}}>
-      <thead className="thead-dark">
+        <table className="table table-bordered table-hover" style={{ margin: "0 auto" }}>
+          <thead className="thead-dark">
             <tr>
               <th>Book No</th>
               <th>Title</th>
@@ -53,10 +95,10 @@ const UpdateBooks: React.FC = () => {
             </tr>
           </thead>
           <tbody>
-            {/* Render the edit row at the top if a row is being edited */}
+            {/* Render the edit row if a book is being edited */}
             {editingRow && updatedBook && (
               <tr>
-                <td>{updatedBook.id}</td>
+                <td>{updatedBook.bookId}</td>
                 <td>
                   <input
                     type="text"
@@ -90,8 +132,8 @@ const UpdateBooks: React.FC = () => {
             )}
             {/* Render the book rows */}
             {books.map((book) => (
-              <tr key={book.id}>
-                <td>{book.id}</td>
+              <tr key={book.bookId}>
+                <td>{book.bookId}</td>
                 <td>{book.title}</td>
                 <td>{book.author}</td>
                 <td>{book.description}</td>
