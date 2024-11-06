@@ -29,7 +29,7 @@ const Header: React.FC<HeaderProps> = ({ OpenSidebar }) => {
       
       <div className="header-right" >
       <MdDarkMode className="icon" size={27} style={{marginRight:'15px'}}/>
-        <a href="/">  
+        <a href="/login">  
             <IoIosLogOut className="icon" size={25} />
         </a>
       </div>

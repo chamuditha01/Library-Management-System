@@ -31,7 +31,7 @@ const Sidebar: React.FC<SidebarProps> = ({
     >
       <div className="sidebar-title">
         <div className="sidebar-brand">
-          <a href="/">
+          <a href="/login">
             <img
               style={{ width: "50px", height: "50px", borderRadius: "40px" }}
               src={logo}

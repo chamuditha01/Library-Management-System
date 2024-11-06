@@ -9,8 +9,8 @@ namespace LibraryManagementSystem.Models
         public int UserId { get; set; }  // Primary Key
         public string Name { get; set; }
         public string Email { get; set; }
-        public string Password { get; set; }
+        public string? Password { get; set; } // Nullable
+        public string? GoogleId { get; set; } // Nullable
 
-        
     }
 }

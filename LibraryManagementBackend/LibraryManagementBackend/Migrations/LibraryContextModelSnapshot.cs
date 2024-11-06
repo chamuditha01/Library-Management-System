@@ -39,8 +39,6 @@ namespace LibraryManagementBackend.Migrations
 
                     b.HasKey("BookId");
 
-                    b.HasIndex("UserId");
-
                     b.ToTable("Books");
                 });
 
@@ -54,33 +52,19 @@ namespace LibraryManagementBackend.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("GoogleId")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Password")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("UserId");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("LibraryManagementBackend.Models.Book", b =>
-                {
-                    b.HasOne("LibraryManagementSystem.Models.User", "User")
-                        .WithMany("Books")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("LibraryManagementSystem.Models.User", b =>
-                {
-                    b.Navigation("Books");
                 });
 #pragma warning restore 612, 618
         }

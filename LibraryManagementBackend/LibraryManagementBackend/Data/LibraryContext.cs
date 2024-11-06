@@ -14,7 +14,7 @@ namespace LibraryManagementBackend.Models.Data
         public DbSet<User> Users { get; set; }
         public DbSet<Book> Books { get; set; }
 
-        public static void SeedData(LibraryContext context)
+        /*public static void SeedData(LibraryContext context)
         {
             // Seed Users if there are none
             if (!context.Users.Any())
@@ -38,6 +38,6 @@ namespace LibraryManagementBackend.Models.Data
 
                 context.SaveChanges();
             }
-        }
+        }*/
     }
 }

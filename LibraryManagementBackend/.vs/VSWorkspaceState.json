@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\LibraryManagementBackend",
+    "\\LibraryManagementBackend\\Controllers",
     "\\LibraryManagementBackend\\Models"
   ],
-  "SelectedNode": "\\LibraryManagementBackend\\Models\\Book.cs",
+  "SelectedNode": "\\LibraryManagementBackend\\Controllers\\AuthController.cs",
   "PreviewInSolutionExplorer": false
 }
