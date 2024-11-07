@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LibraryManagementBackend.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]")] //base api
     [ApiController]
     public class BooksController : ControllerBase
     {
@@ -20,7 +20,7 @@ namespace LibraryManagementBackend.Controllers
         }
 
         // GET: api/books
-        [HttpGet]
+        [HttpGet] //To fetch the books from forntend
         public async Task<ActionResult<IEnumerable<Book>>> GetBooks()
         {
             return await _context.Books.ToListAsync();
@@ -41,7 +41,7 @@ namespace LibraryManagementBackend.Controllers
         }
 
         // POST: api/books
-        [HttpPost]
+        [HttpPost] //To add a new book
         public async Task<IActionResult> PostBook([FromBody] Book book)
         {
             if (!ModelState.IsValid)  // Check for validation errors
@@ -62,7 +62,7 @@ namespace LibraryManagementBackend.Controllers
 
 
         // PUT: api/books/{id}
-        [HttpPut("{id}")]
+        [HttpPut("{id}")] //To update a book
         public async Task<IActionResult> UpdateBook(int id, [FromBody] Book book)
         {
             if (id != book.BookId)
@@ -94,7 +94,7 @@ namespace LibraryManagementBackend.Controllers
         }
 
         // DELETE: api/books/{id}
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}")] //To delete a book
         public async Task<IActionResult> DeleteBook(int id)
         {
             var book = await _context.Books.FindAsync(id);

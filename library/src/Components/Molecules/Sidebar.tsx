@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { BsGrid1X2Fill, BsFillArchiveFill } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
 import logo from "../../Assets/Images/logo.avif";
+import imgdashboard from "../../Assets/Images/imgdash.png";
 import "./index.css";
 
 interface SidebarProps {
@@ -19,10 +20,11 @@ const Sidebar: React.FC<SidebarProps> = ({
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
-    }, 2000);
+    }, 2000); // Simulate loading time
   };
 
   return (
+   
     <aside
       id="sidebar"
       className={`main-container light-mode ${
@@ -46,7 +48,7 @@ const Sidebar: React.FC<SidebarProps> = ({
 
       <ul className="sidebar-list">
         <li className="sidebar-list-item">
-          <a href="/Dashboard">
+          <a href="/Dashboard" onClick={simulateLoading}>
             {isLoading ? (
               <div className="spinner-border text-danger" role="status">
                 <span className="visually-hidden">Loading...</span>
@@ -71,8 +73,12 @@ const Sidebar: React.FC<SidebarProps> = ({
             )}
           </a>
         </li>
+        
       </ul>
+      <img style={{ width: "100%" }} src={imgdashboard}></img>
+ 
     </aside>
+    
   );
 };
 

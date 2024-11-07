@@ -17,7 +17,7 @@ const UpdateBooks: React.FC = () => {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await fetch("https://localhost:5000/api/books"); // Adjust the URL according to your API
+        const response = await fetch("https://localhost:5000/api/books"); // Api call for fetching all books
         if (!response.ok) {
           throw new Error("Failed to fetch books");
         }
@@ -52,21 +52,27 @@ const UpdateBooks: React.FC = () => {
     if (updatedBook) {
       try {
         // Send PUT request to update the book in the API
-        const response = await fetch(`https://localhost:5000/api/books/${updatedBook.bookId}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(updatedBook),
-        });
-  
+        const response = await fetch(
+          `https://localhost:5000/api/books/${updatedBook.bookId}`,
+          {
+            // Api call for updating a book by ID
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(updatedBook),
+          }
+        );
+
         if (!response.ok) {
           throw new Error("Failed to update book");
         }
-  
+
         // Update the book in the local state correctly
-        setBooks(prevBooks =>
-          prevBooks.map(book => (book.bookId === updatedBook.bookId ? updatedBook : book))
+        setBooks((prevBooks) =>
+          prevBooks.map((book) =>
+            book.bookId === updatedBook.bookId ? updatedBook : book
+          )
         );
         setEditingRow(null); // Reset editing row
         setUpdatedBook(null); // Clear updated book data
@@ -75,7 +81,6 @@ const UpdateBooks: React.FC = () => {
       }
     }
   };
-  
 
   if (loading) {
     return <div>Loading...</div>;
@@ -84,7 +89,10 @@ const UpdateBooks: React.FC = () => {
   return (
     <div className="center-table-content">
       <div className="table-responsive">
-        <table className="table table-bordered table-hover" style={{ margin: "0 auto" }}>
+        <table
+          className="table table-bordered table-hover"
+          style={{ margin: "0 auto" }}
+        >
           <thead className="thead-dark">
             <tr>
               <th>Book No</th>
@@ -131,19 +139,26 @@ const UpdateBooks: React.FC = () => {
               </tr>
             )}
             {/* Render the book rows */}
-            {books.map((book) => (
-              <tr key={book.bookId}>
-                <td>{book.bookId}</td>
-                <td>{book.title}</td>
-                <td>{book.author}</td>
-                <td>{book.description}</td>
-                <td>
-                  <button className="btn btn-outline-success" onClick={() => handleEditClick(book)}>
-                    Update
-                  </button>
-                </td>
-              </tr>
-            ))}
+            {books.map(
+              (
+                book // Mapping fetched books
+              ) => (
+                <tr key={book.bookId}>
+                  <td>{book.bookId}</td>
+                  <td>{book.title}</td>
+                  <td>{book.author}</td>
+                  <td>{book.description}</td>
+                  <td>
+                    <button
+                      className="btn btn-outline-success"
+                      onClick={() => handleEditClick(book)}
+                    >
+                      Update
+                    </button>
+                  </td>
+                </tr>
+              )
+            )}
           </tbody>
         </table>
       </div>

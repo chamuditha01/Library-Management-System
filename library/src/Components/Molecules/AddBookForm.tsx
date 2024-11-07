@@ -1,26 +1,42 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { useState } from 'react';
+import "bootstrap/dist/css/bootstrap.min.css";
+import React, { useState } from "react";
 
 interface AddBookProps {
-  onAddBook: (book: { title: string; author: string; description: string; UserId: number }) => void;
+  onAddBook: (book: {
+    title: string;
+    author: string;
+    description: string;
+    userId: number;
+  }) => void;
 }
 
 const AddBook: React.FC<AddBookProps> = ({ onAddBook }) => {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [description, setDescription] = useState("");
-  const [UserId, setUserId] = useState(1);
   const [loading, setLoading] = useState<boolean>(false); // Manage loading state
   const [error, setError] = useState<string>(""); // Manage error state
   const [successMessage, setSuccessMessage] = useState<string>(""); // Manage success message
 
+  // Get userId from localStorage and convert to number
+  const storedUserId = localStorage.getItem("userId");
+  const userId = storedUserId ? parseInt(storedUserId, 10) : null; // Convert to number if available, else null
+
+  // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Ensure userId is a valid number before submitting
+    if (userId === null) {
+      setError("User ID is missing or invalid.");
+      return;
+    }
+
     const bookData = {
-      title,          // Should be a non-empty string
-      author,        // Should be a non-empty string
-      description,   // Should be a non-empty string
-      UserId,        // Ensure UserId is an integer
+      title, // Should be a non-empty string
+      author, // Should be a non-empty string
+      description, // Should be a non-empty string
+      userId, // Ensure userId is an integer
     };
 
     console.log("Submitting book:", bookData);
@@ -30,11 +46,12 @@ const AddBook: React.FC<AddBookProps> = ({ onAddBook }) => {
 
     try {
       const response = await fetch("https://localhost:5000/api/books", {
+        // API call for adding a book
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(bookData),
+        body: JSON.stringify(bookData), // Convert bookData to JSON string before sending
       });
 
       if (!response.ok) {
@@ -50,7 +67,6 @@ const AddBook: React.FC<AddBookProps> = ({ onAddBook }) => {
       setTitle("");
       setAuthor("");
       setDescription("");
-      setUserId(1); // Reset UserId if necessary
 
       // Set success message
       setSuccessMessage("Book added successfully!");
@@ -72,7 +88,7 @@ const AddBook: React.FC<AddBookProps> = ({ onAddBook }) => {
           flexDirection: "column",
           gap: "10px",
           maxWidth: "400px",
-          margin: "0 auto"
+          margin: "0 auto",
         }}
       >
         <label htmlFor="title">
@@ -86,7 +102,6 @@ const AddBook: React.FC<AddBookProps> = ({ onAddBook }) => {
             style={{ width: "100%", padding: "8px", margin: "5px 0" }}
           />
         </label>
-
         <label htmlFor="author">
           Author:
           <input
@@ -98,7 +113,6 @@ const AddBook: React.FC<AddBookProps> = ({ onAddBook }) => {
             style={{ width: "100%", padding: "8px", margin: "5px 0" }}
           />
         </label>
-
         <label htmlFor="description">
           Description:
           <textarea
@@ -109,7 +123,6 @@ const AddBook: React.FC<AddBookProps> = ({ onAddBook }) => {
             style={{ width: "100%", padding: "8px", margin: "5px 0" }}
           />
         </label>
-
         <button
           type="submit"
           disabled={loading || !title || !author || !description}
@@ -119,14 +132,17 @@ const AddBook: React.FC<AddBookProps> = ({ onAddBook }) => {
             color: "white",
             cursor: "pointer",
             border: "none",
-            borderRadius: "4px"
+            borderRadius: "4px",
           }}
         >
           {loading ? "Adding..." : "Add Book"}
         </button>
-
-        {error && <div className="text-danger">{error}</div>} {/* Display error message */}
-        {successMessage && <div className="text-success">{successMessage}</div>} {/* Display success message */}
+        {error && <div className="text-danger">{error}</div>}{" "}
+        {/* Display error message */}
+        {successMessage && (
+          <div className="text-success">{successMessage}</div> 
+        )}{" "}
+        {/* Display success message */}
       </form>
     </div>
   );

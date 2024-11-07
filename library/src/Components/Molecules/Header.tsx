@@ -1,36 +1,28 @@
-import React from 'react';
-import './dt.css';
-import { BsJustify, BsFacebook, BsInstagram, BsSun } from 'react-icons/bs';
-import { AiOutlineLogout } from 'react-icons/ai';
+import React from "react";
+import "./dt.css";
+import { BsJustify } from "react-icons/bs";
 import { IoIosLogOut } from "react-icons/io";
-import { MdDarkMode } from 'react-icons/md';
 
 interface HeaderProps {
   OpenSidebar: () => void;
 }
 
 const Header: React.FC<HeaderProps> = ({ OpenSidebar }) => {
-    
-
-
-  const bars = Array.from({ length: 10 }, (_, i) => (
-    <div key={i} className="bar"></div>
-  ));
-
   return (
-    <header className={`header11 ${'light-mode'}`} style={{backgroundColor:'ActiveCaption'}}>
+    <header
+      className={`header11` }
+      style={{ backgroundColor: "#2f3438" }}
+    >
       <div className="menu-icon">
         <BsJustify className="icon" onClick={OpenSidebar} />
       </div>
       <div className="header-left">
         <div className="icon" />
-        
       </div>
-      
-      <div className="header-right" >
-      <MdDarkMode className="icon" size={27} style={{marginRight:'15px'}}/>
-        <a href="/login">  
-            <IoIosLogOut className="icon" size={25} />
+
+      <div className="header-right">
+        <a href="/login">
+          <IoIosLogOut className="icon" size={25} />
         </a>
       </div>
     </header>

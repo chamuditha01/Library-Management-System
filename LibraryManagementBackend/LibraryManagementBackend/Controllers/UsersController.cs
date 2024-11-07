@@ -8,6 +8,10 @@ using LibraryManagementSystem.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using System.Text.RegularExpressions;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace LibraryManagementBackend.Controllers
 {
@@ -16,6 +20,9 @@ namespace LibraryManagementBackend.Controllers
     public class UsersController : ControllerBase
     {
         private readonly LibraryContext _context;
+        private readonly string _jwtSecretKey = "aF0jPq3j9sL8wR6kT2z5yXyTnW3f7ZkzQ1P6Z5wQ4hK9P2oQz3r8Ym5g7J1xVzT"; // Should be stored securely
+        private readonly string _jwtIssuer = "http://localhost";  // The issuer (could be your domain)
+        private readonly string _jwtAudience = "http://localhost";
 
         public UsersController(LibraryContext context)
         {
@@ -140,13 +147,13 @@ namespace LibraryManagementBackend.Controllers
             return _context.Users.Any(e => e.UserId == id);
         }
 
-        // Add this code in your UsersController
+        
 
         // POST: api/users/login
         [HttpPost("login")]
         public async Task<ActionResult> Login(LoginRequest loginRequest)
         {
-            /*// 1. Check if the email is provided and in a valid format
+            // 1. Check if the email is provided and in a valid format
             if (string.IsNullOrEmpty(loginRequest.Email) || !Regex.IsMatch(loginRequest.Email, @"^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$"))
             {
                 return BadRequest(new { message = "Invalid email format. Please provide a valid email." });
@@ -157,7 +164,7 @@ namespace LibraryManagementBackend.Controllers
             {
                 return BadRequest(new { message = "Password is required." });
             }
-            */
+            
             // 3. Retrieve the user from the database
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == loginRequest.Email);
             if (user == null)
@@ -174,15 +181,50 @@ namespace LibraryManagementBackend.Controllers
             }
 
             // 5. Login successful
-            return Ok(new { message = "Login successful.", userId = user.UserId });
+            //return Ok(new { message = "Login successful.", userId = user.UserId });
+            var token = GenerateJwtToken(user);
+            
+            // Return success response with token
+            return Ok(new { message = "Login successful.",token , userId = user.UserId });
         }
 
-        // Define a model for the login request
-        
+        private string GenerateJwtToken(User user)
+        {
+            var expirationTime = DateTime.UtcNow.AddMinutes(60); // Adds 60 minutes to the current time for expirational time
+            
 
-    }
+            // Define the claims (information about the user)
+            var claims = new[]
+            {
+                new Claim(JwtRegisteredClaimNames.Sub, user.Email),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim("userId", user.UserId.ToString())
+            };
+
+            // Define the key used to sign the JWT
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSecretKey));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            
+
+            // Generate the JWT token
+            var token = new JwtSecurityToken(
+                issuer: _jwtIssuer,
+                audience: _jwtAudience,
+                claims: claims,
+                expires: expirationTime,
+                signingCredentials: creds
+            );
+
+            // Return the token as a string
+            return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+    
+
+}
     
 }
+//  model for the login request
 public class LoginRequest
 {
     public string Email { get; set; }

@@ -1,6 +1,6 @@
 ﻿using LibraryManagementSystem.Models;
 using System.ComponentModel.DataAnnotations;
-
+//Mappped Books table in db
 namespace LibraryManagementBackend.Models
 {
     public class Book

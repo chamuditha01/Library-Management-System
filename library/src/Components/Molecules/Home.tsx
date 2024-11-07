@@ -11,7 +11,6 @@ import ViewBooks from "./ViewBook";
 import UpdateBooks from "./UpdateBook";
 import DeleteBooks from "./DeleteBooks";
 
-
 function Home() {
   // Set 'View Books' as the default popupOpen state
   const [popupOpen, setPopupOpen] = useState<string | null>("View Books");
@@ -24,8 +23,8 @@ function Home() {
   };
 
   const onAddBook = () => {
-    // Define the onAddBook function logic here
-    console.log("Book added");
+    // Set the popup to 'View Books' after adding a book
+    setPopupOpen("View Books");
   };
 
   return (
@@ -81,12 +80,14 @@ function Home() {
           </div>
         </div>
       </div>
-
       {/* Render the appropriate popup based on the state */}
       {popupOpen === "Add Book" && <AddBook onAddBook={onAddBook} />}
-      {popupOpen === "View Books" && <ViewBooks />}
-      {popupOpen === "Update Books" && <UpdateBooks />}
-      {popupOpen === "Delete Books" && <DeleteBooks />}
+      {popupOpen === "View Books" && <ViewBooks />}{" "}
+      {/* Render the ViewBooks component*/}
+      {popupOpen === "Update Books" && <UpdateBooks />}{" "}
+      {/* Render the UpdateBooks component*/}
+      {popupOpen === "Delete Books" && <DeleteBooks />}{" "}
+      {/* Render the DeleteBooks component*/}
     </main>
   );
 }

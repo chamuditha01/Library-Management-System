@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Routes, BrowserRouter } from 'react-rou
 import LandingPage from './Pages/LandingPage';
 import Dashboard from './Pages/Dashboard';
 import Login from './Pages/LoginPage';
+import Profile from './Pages/Profile';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/" Component={LandingPage} />
           <Route path="/dashboard" Component={Dashboard} />
           <Route path="/login" element={<Login/>} />
+          <Route path="/profile" element={<Profile/>} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -5,6 +5,6 @@
     "\\LibraryManagementBackend\\Controllers",
     "\\LibraryManagementBackend\\Models"
   ],
-  "SelectedNode": "\\LibraryManagementBackend\\Controllers\\AuthController.cs",
+  "SelectedNode": "\\LibraryManagementBackend\\Controllers\\UsersController.cs",
   "PreviewInSolutionExplorer": false
 }

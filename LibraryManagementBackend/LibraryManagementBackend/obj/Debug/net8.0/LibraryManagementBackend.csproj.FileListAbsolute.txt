@@ -161,3 +161,4 @@ C:\Users\ASUS\Desktop\Expertenic Assignment\LibraryProject\LibraryManagementBack
 C:\Users\ASUS\Desktop\Expertenic Assignment\LibraryProject\LibraryManagementBackend\LibraryManagementBackend\bin\Debug\net8.0\Microsoft.Extensions.Configuration.Binder.dll
 C:\Users\ASUS\Desktop\Expertenic Assignment\LibraryProject\LibraryManagementBackend\LibraryManagementBackend\bin\Debug\net8.0\Microsoft.Extensions.Logging.Configuration.dll
 C:\Users\ASUS\Desktop\Expertenic Assignment\LibraryProject\LibraryManagementBackend\LibraryManagementBackend\bin\Debug\net8.0\Microsoft.Extensions.Logging.Console.dll
+C:\Users\ASUS\Desktop\Expertenic Assignment\LibraryProject\LibraryManagementBackend\LibraryManagementBackend\bin\Debug\net8.0\System.Security.Permissions.dll

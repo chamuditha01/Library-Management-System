@@ -28,7 +28,7 @@ const LandingPage = () => {
       <div className="landing-button-container">
         <button
           className="landing-button"
-          onClick={() => navigate("/login")}
+          onClick={() => navigate("/login")} // Navigate to the login page
         >
           Get Started
         </button>

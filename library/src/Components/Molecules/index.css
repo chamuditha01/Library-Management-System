@@ -39,3 +39,21 @@
   cursor: pointer;
  
 }
+.profile-container {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #141e30;
+  text-align: center;
+}
+
+.profile-details p {
+  font-size: 16px;
+  margin: 8px 0;
+}
+
+.profile-details strong {
+  color: white;
+}
