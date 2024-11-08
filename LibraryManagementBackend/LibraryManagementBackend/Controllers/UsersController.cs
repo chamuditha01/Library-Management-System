@@ -12,10 +12,12 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using System.Collections;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace LibraryManagementBackend.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]")] //API base URL - https://localhost:5000/api/users
     [ApiController]
     public class UsersController : ControllerBase
     {
@@ -27,10 +29,13 @@ namespace LibraryManagementBackend.Controllers
         public UsersController(LibraryContext context, IConfiguration configuration)
         {
             _context = context;
-            _jwtSecretKey = configuration["JwtSettings:SecretKey"]; 
+            _jwtSecretKey = configuration["JwtSettings:SecretKey"];
         }
 
-        // GET: https://localhost:5000/api/users To retrieve a user
+        // GET: https://localhost:5000/api/users To retrieve users
+        //200 OK: Returns a list of all users.
+        //500 Internal Server Error: If an unexpected error occurs.
+
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
@@ -38,6 +43,10 @@ namespace LibraryManagementBackend.Controllers
         }
 
         // GET: https://localhost:5000/api/users/id To retrieve a user by id
+        //200 OK: Returns the user's details.
+        //404 Not Found: If no user is found with the given ID.
+        //500 Internal Server Error: If an unexpected error occurs.
+        
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUser(int id)
         {
@@ -52,6 +61,11 @@ namespace LibraryManagementBackend.Controllers
         }
 
         // POST: https://localhost:5000/api/users To handle the signup process
+        //Headers:Content-Type: application/json
+        //201 Created: User created successfully, includes a success message and user details.
+        //400 Bad Request: Returns validation errors or if the email is already registered.
+        //500 Internal Server Error: If an error occurs while saving the user.
+
         [HttpPost]
         public async Task<ActionResult<User>> PostUser(User user)
         {
@@ -98,6 +112,7 @@ namespace LibraryManagementBackend.Controllers
 
 
         // PUT: https://localhost:5000/api/users/id To update a user by id
+
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUser(int id, User user)
         {
