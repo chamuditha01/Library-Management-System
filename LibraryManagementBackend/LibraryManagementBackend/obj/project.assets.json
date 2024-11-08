@@ -5355,11 +5355,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ASUS\\Desktop\\Expertenic Assignment\\LibraryProject\\LibraryManagementBackend\\LibraryManagementBackend\\LibraryManagementBackend.csproj",
+      "projectUniqueName": "C:\\Users\\ASUS\\Desktop\\Expernetic Assignment\\LibraryProject\\LibraryManagementBackend\\LibraryManagementBackend\\LibraryManagementBackend.csproj",
       "projectName": "LibraryManagementBackend",
-      "projectPath": "C:\\Users\\ASUS\\Desktop\\Expertenic Assignment\\LibraryProject\\LibraryManagementBackend\\LibraryManagementBackend\\LibraryManagementBackend.csproj",
+      "projectPath": "C:\\Users\\ASUS\\Desktop\\Expernetic Assignment\\LibraryProject\\LibraryManagementBackend\\LibraryManagementBackend\\LibraryManagementBackend.csproj",
       "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ASUS\\Desktop\\Expertenic Assignment\\LibraryProject\\LibraryManagementBackend\\LibraryManagementBackend\\obj\\",
+      "outputPath": "C:\\Users\\ASUS\\Desktop\\Expernetic Assignment\\LibraryProject\\LibraryManagementBackend\\LibraryManagementBackend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
