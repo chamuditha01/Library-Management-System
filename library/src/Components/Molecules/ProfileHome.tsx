@@ -54,7 +54,7 @@ const ProfileHome = () => {
     color: "white",
   };
   return (
-    <main className={`main-container dark-mode : 'light-mode'}`}>
+    <main className={`main-container dark-mode : 'light-mode'}`} style={{ background: "linear-gradient(135deg, #FFF8DE, #C5D3E8)" }}>
       <div className="profile-container" style={{ marginTop: "20px" }}>
         <h2 style={ptagcss}>User Profile</h2>
         {user && (

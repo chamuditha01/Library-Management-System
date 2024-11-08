@@ -15,11 +15,13 @@ const Dashboard: React.FC = () => {
   useEffect(() => {
     const token = localStorage.getItem("token"); // Retrieve token from localStorage
     //console.log("Token:", token); //optional
-
+    
     if (!token) {
-      //window.location.href = '/login'; // Redirect to login if no token exists
+      localStorage.setItem("redirectMessage", "Please login to access the dashboard.");
+      window.location.href = '/login'; // Redirect to login page
       return;
     }
+    
 
     try {
       const decodedToken: any = jwtDecode(token); // Decode the JWT token

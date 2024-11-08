@@ -10,6 +10,9 @@ import AddBook from "./AddBookForm";
 import ViewBooks from "./ViewBook";
 import UpdateBooks from "./UpdateBook";
 import DeleteBooks from "./DeleteBooks";
+import CardAtom from "../Atoms/CardAtom";
+import { VscBlank } from "react-icons/vsc";
+
 
 function Home() {
   // Set 'View Books' as the default popupOpen state
@@ -28,60 +31,40 @@ function Home() {
   };
 
   return (
-    <main className={`main-container dark-mode : 'light-mode'}`}>
+    <main className={`main-container dark-mode : 'light-mode1'}`} style={{ background: "linear-gradient(135deg, #FFF8DE, #C5D3E8)" }}>
       <div>
-        <h3 style={{ textAlign: "center", marginBottom: "30px" }}>
+        <h3 style={{ textAlign: "center", marginBottom: "30px",color:'black' ,fontSize:'30px', fontWeight:'bold'}}>
           Library Management System
         </h3>
       </div>
       <div className="main-cards">
-        <div className="card">
-          <div className="card-inner">
-            <a
-              href="#"
-              className="h3"
-              onClick={() => togglePopup("View Books")}
-            >
-              View Books{" "}
-            </a>
-            <IoLibrarySharp className="card_icon" />
-          </div>
-        </div>
-        <div className="card">
-          <div className="card-inner">
-            <a href="#" className="h3" onClick={() => togglePopup("Add Book")}>
-              Add Books <GiClick className="card_icon" />
-            </a>
-            <MdLocalLibrary className="card_icon" />
-          </div>
-        </div>
-        <div className="card">
-          <div className="card-inner">
-            <a
-              href="#"
-              className="h3"
-              onClick={() => togglePopup("Update Books")}
-            >
-              Update Books <GiClick className="card_icon" />
-            </a>
-            <TbWorldUpload className="card_icon" />
-          </div>
-        </div>
-        <div className="card">
-          <div className="card-inner">
-            <a
-              href="#"
-              className="h3"
-              onClick={() => togglePopup("Delete Books")}
-            >
-              Delete Books <GiClick className="card_icon" />
-            </a>
-            <MdDeleteSweep className="card_icon" />
-          </div>
-        </div>
+      <CardAtom
+          title="View Books"
+          onClick={() => togglePopup("View Books")}
+          IconComponent={IoLibrarySharp}
+          IconComponent1={VscBlank}
+        />
+        <CardAtom
+          title="Add Books"
+          onClick={() => togglePopup("Add Books")}
+          IconComponent={MdLocalLibrary}
+          IconComponent1={GiClick}
+        />
+        <CardAtom
+          title="Update Books"
+          onClick={() => togglePopup("Update Books")}
+          IconComponent={TbWorldUpload}
+          IconComponent1={GiClick}
+        />
+        <CardAtom
+          title="Delete Books"
+          onClick={() => togglePopup("Delete Books")}
+          IconComponent={MdDeleteSweep}
+          IconComponent1={GiClick}
+        />
       </div>
       {/* Render the appropriate popup based on the state */}
-      {popupOpen === "Add Book" && <AddBook onAddBook={onAddBook} />}
+      {popupOpen === "Add Books" && <AddBook onAddBook={onAddBook} />}
       {popupOpen === "View Books" && <ViewBooks />}{" "}
       {/* Render the ViewBooks component*/}
       {popupOpen === "Update Books" && <UpdateBooks />}{" "}

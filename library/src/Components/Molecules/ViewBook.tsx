@@ -50,10 +50,10 @@ const ViewBooks: React.FC = () => {
           >
             <thead className="thead-dark">
               <tr>
-                <th>Book No</th>
-                <th>Title</th>
-                <th>Author</th>
-                <th>Description</th>
+                <th id="th1">Book No</th>
+                <th id="th1">Title</th>
+                <th id="th1">Author</th>
+                <th id="th1">Description</th>
               </tr>
             </thead>
             <tbody>

@@ -20,23 +20,24 @@ namespace LibraryManagementBackend.Controllers
     public class UsersController : ControllerBase
     {
         private readonly LibraryContext _context;
-        private readonly string _jwtSecretKey = "aF0jPq3j9sL8wR6kT2z5yXyTnW3f7ZkzQ1P6Z5wQ4hK9P2oQz3r8Ym5g7J1xVzT"; // Should be stored securely
+        private readonly string _jwtSecretKey; // Should be stored securely
         private readonly string _jwtIssuer = "http://localhost";  // The issuer (could be your domain)
         private readonly string _jwtAudience = "http://localhost";
 
-        public UsersController(LibraryContext context)
+        public UsersController(LibraryContext context, IConfiguration configuration)
         {
             _context = context;
+            _jwtSecretKey = configuration["JwtSettings:SecretKey"]; 
         }
 
-        // GET: api/users
+        // GET: https://localhost:5000/api/users To retrieve a user
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
             return await _context.Users.ToListAsync();
         }
 
-        // GET: api/users/5
+        // GET: https://localhost:5000/api/users/id To retrieve a user by id
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUser(int id)
         {
@@ -50,7 +51,7 @@ namespace LibraryManagementBackend.Controllers
             return user;
         }
 
-        // POST: api/users
+        // POST: https://localhost:5000/api/users To handle the signup process
         [HttpPost]
         public async Task<ActionResult<User>> PostUser(User user)
         {
@@ -96,8 +97,8 @@ namespace LibraryManagementBackend.Controllers
 
 
 
-    // PUT: api/users/5
-    [HttpPut("{id}")]
+        // PUT: https://localhost:5000/api/users/id To update a user by id
+        [HttpPut("{id}")]
         public async Task<IActionResult> PutUser(int id, User user)
         {
             if (id != user.UserId)
@@ -126,7 +127,7 @@ namespace LibraryManagementBackend.Controllers
             return NoContent();
         }
 
-        // DELETE: api/users/5
+        // DELETE: https://localhost:5000/api/users/id To delete a user by id
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
@@ -149,7 +150,7 @@ namespace LibraryManagementBackend.Controllers
 
         
 
-        // POST: api/users/login
+        // POST: https://localhost:5000/api/users/login To handle the login process
         [HttpPost("login")]
         public async Task<ActionResult> Login(LoginRequest loginRequest)
         {
@@ -188,7 +189,7 @@ namespace LibraryManagementBackend.Controllers
             return Ok(new { message = "Login successful.",token , userId = user.UserId });
         }
 
-        private string GenerateJwtToken(User user)
+        private string GenerateJwtToken(User user) //Generates jwt token
         {
             var expirationTime = DateTime.UtcNow.AddMinutes(60); // Adds 60 minutes to the current time for expirational time
             

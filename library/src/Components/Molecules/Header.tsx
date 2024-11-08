@@ -22,7 +22,7 @@ const Header: React.FC<HeaderProps> = ({ OpenSidebar }) => {
 
       <div className="header-right">
         <a href="/login">
-          <IoIosLogOut className="icon" size={25} />
+          <IoIosLogOut className="icon" size={25} color="white"/>
         </a>
       </div>
     </header>

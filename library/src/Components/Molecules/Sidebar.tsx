@@ -27,9 +27,11 @@ const Sidebar: React.FC<SidebarProps> = ({
    
     <aside
       id="sidebar"
-      className={`main-container light-mode ${
+      style={{ background: "linear-gradient(135deg, #A6AEBF, #4A90E2)" }}
+      className={`main-container light-mode1 ${
         openSidebarToggle ? "sidebar-responsive" : ""
-      }`}
+      }`
+    }
     >
       <div className="sidebar-title">
         <div className="sidebar-brand">
@@ -48,34 +50,37 @@ const Sidebar: React.FC<SidebarProps> = ({
 
       <ul className="sidebar-list">
         <li className="sidebar-list-item">
-          <a href="/Dashboard" onClick={simulateLoading}>
+          <a href="/Dashboard" onClick={simulateLoading}
+          style={{color:'black'}}>
             {isLoading ? (
               <div className="spinner-border text-danger" role="status">
                 <span className="visually-hidden">Loading...</span>
               </div>
             ) : (
               <>
-                <BsGrid1X2Fill className="icon" /> Library
+                <BsGrid1X2Fill className="icon" color="black"/> Library
               </>
             )}
           </a>
         </li>
         <li className="sidebar-list-item">
-          <a href="/profile" onClick={simulateLoading}>
+          <a href="/profile" onClick={simulateLoading}
+          style={{color:'black'}}>
             {isLoading ? (
               <div className="spinner-border text-danger" role="status">
                 <span className="visually-hidden">Loading...</span>
               </div>
+              
             ) : (
               <>
-                <CgProfile size={28} className="icon" /> Profile
+                <CgProfile size={28} className="icon" color="black"/> Profile
               </>
             )}
           </a>
         </li>
         
       </ul>
-      <img style={{ width: "100%" }} src={imgdashboard}></img>
+      <img style={{ width: "100%",marginTop:'100%' }} src={imgdashboard}></img>
  
     </aside>
     

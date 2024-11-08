@@ -5,7 +5,7 @@ html {
     margin:0;
     padding:0;
     font-family: sans-serif;
-    background: linear-gradient(#141e30, #446891);
+    background: linear-gradient(#8b99b8, #d9c98e);
   }
   
   .login-box {
@@ -227,8 +227,8 @@ html {
   
   
   input[type="button"] {
-    border: none;
-    background: cornflowerblue;
+    border: 1px solid white;
+    background: #54473F;
     color: white;
     padding: 12px 24px;
     margin: 8px;

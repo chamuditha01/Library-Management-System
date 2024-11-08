@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./index.css";
 import { jwtDecode } from "jwt-decode";
 import imglogin from "../../Assets/Images/librarydb.webp";
-
+import { useEffect } from "react";
 
 
 function Login() {
@@ -18,6 +18,16 @@ function Login() {
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
+  useEffect(() => {
+    localStorage.removeItem("token");
+    const message = localStorage.getItem("redirectMessage");
+    if (message) {
+      alert(message);  // Display the alert
+      localStorage.removeItem("redirectMessage");  // Clean up the message from storage
+    }
+  }, []);
+
+  
   const onButtonClick = async () => {
     setEmailError("");
     setPasswordError("");
@@ -25,6 +35,7 @@ function Login() {
     setSuccessMessage("");
     setErrorMessage("");
     
+
 
     if (isLogin) {
       // Login validation
@@ -210,7 +221,7 @@ function Login() {
       <div className="toggleForm">
         <p
           onClick={() => setIsLogin(!isLogin)}
-          style={{ color: "blue", cursor: "pointer" }}
+          style={{ color: "white", cursor: "pointer" }}
         >
           {isLogin
             ? "Don't have an account? Sign Up"

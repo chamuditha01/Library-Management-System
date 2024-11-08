@@ -5,19 +5,19 @@ select {
 }
 
 .card:first-child {
-  background-color: #2962ff;
+  background-color: #D0E8C5;
 }
 
 .card:nth-child(2) {
-  background-color: #ff6d00;
+  background-color: #A6AEBF;
 }
 
 .card:nth-child(3) {
-  background-color: #af0000;
+  background-color: #D7B26D;
 }
 
 .card:nth-child(4) {
-  background-color: #2e8400;
+  background-color: #C5D3E8;
 }
 
 table {
@@ -47,6 +47,7 @@ th {
 .h3 {
   text-decoration: none;
   color: inherit;
+  text-transform: capitalize;
 }
 .h3:hover {
   text-decoration: none;
@@ -212,4 +213,14 @@ table th {
   /* Add styles for light mode */
   background-color: #fff;
   color: #333;
+}
+
+.light-mode1 {
+  /* Add styles for light mode */
+  background-color: #F1C40F;
+  color: #333;
+}
+
+#th1{
+  background-color: #54473F;
 }

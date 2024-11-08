@@ -1,5 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState } from "react";
+import { MdLocalLibrary } from "react-icons/md";
 
 interface AddBookProps {
   onAddBook: (book: {
@@ -80,7 +81,8 @@ const AddBook: React.FC<AddBookProps> = ({ onAddBook }) => {
 
   return (
     <div>
-      <h1 className="h1">Add a Book</h1>
+      
+      <MdLocalLibrary size={140} color="#54473F"/>  
       <form
         onSubmit={handleSubmit}
         style={{
@@ -91,7 +93,7 @@ const AddBook: React.FC<AddBookProps> = ({ onAddBook }) => {
           margin: "0 auto",
         }}
       >
-        <label htmlFor="title">
+        <label htmlFor="title" style={{color:'black'}}>
           Title:
           <input
             type="text"
@@ -102,7 +104,7 @@ const AddBook: React.FC<AddBookProps> = ({ onAddBook }) => {
             style={{ width: "100%", padding: "8px", margin: "5px 0" }}
           />
         </label>
-        <label htmlFor="author">
+        <label htmlFor="author" style={{color:'black'}}>
           Author:
           <input
             type="text"
@@ -113,7 +115,7 @@ const AddBook: React.FC<AddBookProps> = ({ onAddBook }) => {
             style={{ width: "100%", padding: "8px", margin: "5px 0" }}
           />
         </label>
-        <label htmlFor="description">
+        <label htmlFor="description" style={{color:'black'}}>
           Description:
           <textarea
             id="description"
@@ -128,7 +130,7 @@ const AddBook: React.FC<AddBookProps> = ({ onAddBook }) => {
           disabled={loading || !title || !author || !description}
           style={{
             padding: "10px",
-            backgroundColor: "#007BFF",
+            backgroundColor: "#54473F",
             color: "white",
             cursor: "pointer",
             border: "none",
